@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Navbar from './components/Navbar';
+import InputArea from './components/InputArea';
+import Footer from './components/Footer';
 
 function App() {
+  const [style, setStyle] = useState({background:"white", color:"black"})
+  const setMode=(e)=>{
+    if(e){
+      setStyle(
+        {
+          background:"black",
+          color:"white"
+        }
+      )
+    }
+    else{
+      setStyle(
+        {
+          background:"white",
+          color:"black"
+        }
+      )
+    }
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar setMode={setMode} style={style}></Navbar>
+      <InputArea style={style}></InputArea>
+      <Footer></Footer>
     </div>
   );
 }
